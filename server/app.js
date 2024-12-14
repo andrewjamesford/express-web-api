@@ -8,6 +8,7 @@ const fs = require("node:fs");
 const swaggerUi = require("swagger-ui-express");
 const productRouter = require("./products/product.router");
 const reportRouter = require("./reports/report.router");
+const settingsRouter = require("./settings/settings.router"); // New router
 const errorHandlerMiddleware = require("./middleware/errorHandlerMiddleware");
 
 const swaggerDocument = yaml.load(
@@ -21,6 +22,7 @@ app.use(express.json());
 // routes
 app.use("/api/products", productRouter);
 app.use("/api/reports", reportRouter);
+app.use("/api/settings", settingsRouter); // New route
 app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // error handling middleware
